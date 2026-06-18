@@ -87,6 +87,1167 @@
     max-width: 1100px; margin: 0 auto;
   }
   .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.avatar-ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--grad);
+  padding: 4px;
+  overflow: hidden;
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.3} 50%{transform:scale(1.08);opacity:0.15} }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(0,169,224,0.1); border: 1px solid rgba(0,169,224,0.3);
+    color: var(--accent); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.5s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-name { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; }
+  .hero-title { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+  .hero-summary { color: var(--text2); line-height: 1.7; margin-bottom: 2rem; }
+  .hero-stats { display: flex; gap: 2rem; margin-bottom: 2rem; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 1.8rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-stat-label { font-size: 0.75rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { padding: 12px 24px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+  .btn-primary { background: var(--grad); color: #fff; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-outline { background: transparent; border: 1px solid var(--border2); color: var(--text); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,169,224,0.05); }
+  .hero-right { display: flex; flex-direction: column; gap: 1rem; }
+  .mini-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .mini-card:hover { border-color: var(--border2); }
+  .mini-card-label { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .mini-card-value { font-size: 0.9rem; color: var(--text); }
+  .cert-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cert-pill {
+    background: rgba(123,92,250,0.12);
+    border: 1px solid rgba(123,92,250,0.3);
+    color: #a78bfa;
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 20px;
+  }
+
+  /* AI CHAT */
+  #chat { scroll-margin-top: 70px; }
+  .chat-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .chat-header {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .ai-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--grad);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .chat-header-info h3 { font-size: 0.95rem; font-weight: 600; }
+  .chat-header-info p { font-size: 0.75rem; color: var(--text3); }
+  .chat-messages {
+    height: 420px; overflow-y: auto;
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    scroll-behavior: smooth;
+  }
+  .msg { display: flex; gap: 0.75rem; }
+  .msg.user { flex-direction: row-reverse; }
+  .msg-avatar {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+  }
+  .msg-avatar.ai { background: var(--grad); color: #fff; }
+  .msg-avatar.user { background: rgba(0,169,224,0.2); color: var(--accent); border: 1px solid var(--border2); }
+  .msg-bubble {
+    max-width: 75%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .msg.ai .msg-bubble { background: var(--surface2); border: 1px solid var(--border); }
+  .msg.user .msg-bubble { background: rgba(0,169,224,0.15); border: 1px solid rgba(0,169,224,0.2); }
+  .typing { display: flex; gap: 4px; align-items: center; padding: 0.5rem 0; }
+  .typing span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--text3);
+    animation: bounce 1.2s ease-in-out infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-8px)} }
+  .suggested-prompts {
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .prompt-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 6px 12px; border-radius: 20px;
+    font-size: 0.78rem; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .prompt-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,169,224,0.05); }
+  .chat-input-row {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 0.75rem;
+  }
+  .chat-input {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .chat-input:focus { border-color: var(--accent); }
+  .chat-input::placeholder { color: var(--text3); }
+  .chat-send {
+    background: var(--grad);
+    border: none; color: #fff;
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.2s;
+  }
+  .chat-send:hover { opacity: 0.85; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .skill-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .skill-bar { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 2px; background: var(--grad); transition: width 1s ease; }
+  .skill-level { font-size: 0.72rem; color: var(--text3); margin-top: 0.4rem; }
+  .skills-category { margin-bottom: 2rem; }
+  .category-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 1rem; border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2rem; }
+  .timeline-dot {
+    position: absolute; left: -1.75rem; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--grad); border: 2px solid var(--bg);
+    z-index: 1;
+  }
+  .timeline-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .timeline-card:hover { border-color: var(--border2); }
+  .timeline-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem; }
+  .timeline-role { font-weight: 700; font-size: 1rem; }
+  .timeline-date { font-size: 0.78rem; color: var(--accent); white-space: nowrap; margin-left: 1rem; }
+  .timeline-company { color: var(--text2); font-size: 0.875rem; margin-bottom: 0.75rem; }
+  .timeline-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-tag {
+    background: rgba(0,169,224,0.1);
+    border: 1px solid rgba(0,169,224,0.2);
+    color: var(--accent);
+    font-size: 0.72rem; padding: 3px 8px; border-radius: 4px;
+  }
+
+  /* PROJECTS */
+  .projects-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); padding: 6px 14px; border-radius: 20px;
+    font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(0,169,224,0.05);
+  }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex; flex-direction: column;
+    transition: all 0.2s;
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .project-card[data-hidden="true"] { display: none; }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .project-name { font-weight: 700; font-size: 1rem; }
+  .project-type {
+    font-size: 0.7rem; padding: 3px 8px; border-radius: 20px;
+    background: rgba(123,92,250,0.12); color: #a78bfa;
+    border: 1px solid rgba(123,92,250,0.25);
+    white-space: nowrap; margin-left: 0.5rem;
+  }
+  .project-desc { color: var(--text2); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; color: var(--accent);
+    border: 1px solid rgba(0,169,224,0.25);
+    padding: 6px 12px; border-radius: 6px;
+    transition: all 0.2s; align-self: flex-start;
+  }
+  .project-link:hover { background: rgba(0,169,224,0.1); text-decoration: none; }
+
+  /* CERTIFICATIONS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-badge {
+    width: 64px; height: 64px; margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .cert-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .cert-issuer { font-size: 0.78rem; color: var(--text3); }
+
+  /* ARCHITECTURE */
+  .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .arch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .arch-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 1rem; }
+  .arch-diagram {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    font-family: monospace; font-size: 0.8rem;
+    color: var(--text2); line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* INTERVIEW */
+  .interview-grid { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; }
+  .interview-categories { display: flex; flex-direction: column; gap: 0.5rem; }
+  .interview-cat-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 10px 14px; border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 0.85rem; text-align: left;
+    transition: all 0.2s;
+  }
+  .interview-cat-btn.active {
+    background: rgba(0,169,224,0.1);
+    border-color: rgba(0,169,224,0.4); color: var(--accent);
+  }
+  .interview-qa { display: flex; flex-direction: column; gap: 1rem; }
+  .qa-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .qa-q {
+    padding: 1rem 1.25rem;
+    font-weight: 600; font-size: 0.9rem;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s;
+  }
+  .qa-q:hover { background: var(--surface2); }
+  .qa-q .chevron { transition: transform 0.2s; font-size: 0.75rem; }
+  .qa-q.open .chevron { transform: rotate(180deg); }
+  .qa-a {
+    padding: 0 1.25rem;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.2s;
+    color: var(--text2); font-size: 0.875rem; line-height: 1.7;
+    border-top: 0px solid var(--border);
+  }
+  .qa-a.open {
+    max-height: 300px;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--border2); }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    background: rgba(0,169,224,0.1); display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-item-label { font-size: 0.72rem; color: var(--text3); }
+  .contact-item-value { font-size: 0.875rem; color: var(--text); }
+  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-label { display: block; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.4rem; }
+  .form-input, .form-textarea {
+    width: 100%;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    padding: 10px 12px; font-size: 0.875rem;
+    transition: border-color 0.2s; outline: none;
+    font-family: inherit;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text3); font-size: 0.8rem;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid, .contact-grid, .arch-grid, .interview-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">
+  <img src="images/tushar.jpg"
+       alt="TF"
+       style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+  </span>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#chat">AI Chat</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#interview">Interview</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle">☀ Light</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> Available for opportunities</div>
+      <div class="avatar-ring" style="margin-bottom:1.25rem; overflow:hidden;">
+		  <img
+			src="images/tushar.jpg"
+			alt="Tushar Fulzele"
+			style="width:100%; height:100%; object-fit:cover; border-radius:50%;"
+		  >
+		</div>
+      <h1 class="hero-name">Tushar Fulzele</h1>
+      <p class="hero-title">Salesforce Developer · B2B Commerce Cloud</p>
+      <p class="hero-summary">Innovative Salesforce Developer with 3+ years of expertise in B2B Commerce implementations. Proven track record across enterprise projects, featured at Dreamforce '23 with an Einstein GPT-powered POC.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">3+</div>
+          <div class="hero-stat-label">Years Exp.</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">Certifications</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Projects</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">1</div>
+          <div class="hero-stat-label">Dreamforce POC</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">🤖 Talk to My AI</button>
+        <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">📬 Contact Me</button>
+        <a href="mailto:tusharfulzelesfdc@gmail.com" class="btn btn-outline" style="text-decoration:none;">✉ Email</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="mini-card">
+        <div class="mini-card-label">Current Role</div>
+        <div class="mini-card-value" style="font-weight:600;">Associate Software Professional</div>
+        <div style="font-size:0.8rem; color:var(--text3); margin-top:2px;">Dentsu Global Services · Dec 2022 – Present</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label">Salesforce Clouds</div>
+        <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem;">
+          <span class="tech-tag">B2B Commerce</span>
+          <span class="tech-tag">Experience Cloud</span>
+          <span class="tech-tag">Sales Cloud</span>
+          <span class="tech-tag">Einstein GPT</span>
+          <span class="tech-tag">Order Mgmt</span>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label">Certifications</div>
+        <div class="cert-badges" style="margin-top:0.5rem;">
+          <span class="cert-pill">PD2</span>
+          <span class="cert-pill">PD1</span>
+          <span class="cert-pill">Agentforce</span>
+          <span class="cert-pill">Associate</span>
+          <span class="cert-pill">Shopify</span>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label">Highlight</div>
+        <div class="mini-card-value" style="font-size:0.85rem; line-height:1.5;">🏆 Einstein GPT POC showcased at <strong>Dreamforce '23</strong> for Asset Management Companies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section id="chat">
+  <p class="section-label">AI Assistant</p>
+  <h2 class="section-title">Talk to My AI 🤖</h2>
+  <p class="section-sub">Ask me anything about Tushar's experience, skills, projects, and more.</p>
+  <div class="chat-container reveal">
+    <div class="chat-header">
+      <div class="ai-avatar">AI</div>
+      <div class="chat-header-info">
+        <h3>Tushar's AI Resume Assistant</h3>
+        <p>Powered by resume knowledge · Answers based on real experience only</p>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg ai">
+        <div class="msg-avatar ai">AI</div>
+        <div class="msg-bubble">Hi! 👋 I'm the AI version of Tushar Fulzele — a Salesforce Developer with 3+ years of experience specializing in B2B Commerce Cloud. Ask me about my projects, certifications, skills, or why you should hire me! What would you like to know?</div>
+      </div>
+    </div>
+    <div class="suggested-prompts" id="suggestedPrompts">
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">Tell me about yourself</button>
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">What Salesforce clouds have you worked with?</button>
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">What certifications do you have?</button>
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">Explain your B2B Commerce expertise</button>
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">Tell me about your Dreamforce project</button>
+      <button class="prompt-chip" onclick="sendPrompt(this.textContent)">Why should we hire you?</button>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about experience, skills, projects..." onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">Skills & Technologies</h2>
+  <p class="section-sub">Technical proficiencies across the Salesforce ecosystem and development tools.</p>
+
+  <div class="skills-category reveal">
+    <div class="category-label">Core Development</div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">⚡</div><div class="skill-name">Apex</div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div><div class="skill-level">Expert · 90%</div></div>
+      <div class="skill-card"><div class="skill-icon">🧩</div><div class="skill-name">LWC</div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div><div class="skill-level">Expert · 88%</div></div>
+      <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">Aura Components</div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div><div class="skill-level">Advanced · 75%</div></div>
+      <div class="skill-card"><div class="skill-icon">📜</div><div class="skill-name">VisualForce</div><div class="skill-bar"><div class="skill-fill" data-width="65"></div></div><div class="skill-level">Proficient · 65%</div></div>
+    </div>
+  </div>
+  <div class="skills-category reveal">
+    <div class="category-label">Salesforce Platform</div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🛍</div><div class="skill-name">B2B Commerce</div><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div><div class="skill-level">Expert · 92%</div></div>
+      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">Experience Cloud</div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div><div class="skill-level">Expert · 90%</div></div>
+      <div class="skill-card"><div class="skill-icon">☁</div><div class="skill-name">Sales Cloud</div><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div><div class="skill-level">Advanced · 78%</div></div>
+      <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">Einstein GPT</div><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div><div class="skill-level">Proficient · 70%</div></div>
+      <div class="skill-card"><div class="skill-icon">🔁</div><div class="skill-name">Flows & Automation</div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div><div class="skill-level">Advanced · 82%</div></div>
+      <div class="skill-card"><div class="skill-icon">📦</div><div class="skill-name">Order Management</div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div><div class="skill-level">Advanced · 80%</div></div>
+    </div>
+  </div>
+  <div class="skills-category reveal">
+    <div class="category-label">DevOps & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🔀</div><div class="skill-name">CI/CD</div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div><div class="skill-level">Advanced · 75%</div></div>
+      <div class="skill-card"><div class="skill-icon">📋</div><div class="skill-name">Bitbucket / GitLab</div><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div><div class="skill-level">Advanced · 78%</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">Chart.js</div><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div><div class="skill-level">Proficient · 70%</div></div>
+      <div class="skill-card"><div class="skill-icon">🗺</div><div class="skill-name">Google Maps API</div><div class="skill-bar"><div class="skill-fill" data-width="65"></div></div><div class="skill-level">Proficient · 65%</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career</p>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">Professional journey and key accomplishments.</p>
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-role">Associate Software Professional</span>
+          <span class="timeline-date">Dec 2022 – Present</span>
+        </div>
+        <div class="timeline-company">Dentsu Global Services <span style="color:var(--text3);font-size:0.78rem;">(formerly Extentia, via Merkle Inspire acquisition)</span></div>
+        <div style="color:var(--text2); font-size:0.85rem; margin-bottom:0.75rem; line-height:1.6;">
+          Working as a Salesforce Developer on multiple enterprise B2B Commerce Cloud implementations. Built Einstein GPT-powered POC featured at Dreamforce '23. Sole Dentsu contributor on client-facing projects including Andersen Windows. Specializing in LWC, Apex, Experience Builder, and payment integrations.
+        </div>
+        <div class="timeline-tech">
+          <span class="tech-tag">B2B Commerce Cloud</span>
+          <span class="tech-tag">LWC</span>
+          <span class="tech-tag">Apex</span>
+          <span class="tech-tag">Experience Cloud</span>
+          <span class="tech-tag">Einstein GPT</span>
+          <span class="tech-tag">Payment Integration</span>
+          <span class="tech-tag">Rocket Framework</span>
+          <span class="tech-tag">CI/CD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-title">Project Showcase</h2>
+  <p class="section-sub">Enterprise B2B Commerce and Salesforce implementations.</p>
+  <div class="projects-filters reveal">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+    <button class="filter-btn" onclick="filterProjects('b2b', this)">B2B Commerce</button>
+    <button class="filter-btn" onclick="filterProjects('lwc', this)">LWC / Apex</button>
+    <button class="filter-btn" onclick="filterProjects('integration', this)">Integrations</button>
+    <button class="filter-btn" onclick="filterProjects('ai', this)">AI Projects</button>
+  </div>
+  <div class="projects-grid" id="projectsGrid">
+
+    <div class="project-card" data-tags="b2b lwc">
+      <div class="project-header">
+        <span class="project-name">Highline Warren</span>
+        <span class="project-type">B2B Commerce</span>
+      </div>
+      <p class="project-desc">Implemented Salesforce Experience Cloud using the B2B Commerce Template and Salesforce Order Management System to migrate a legacy commerce stack to next generation capability and scale.</p>
+      <div class="project-tech">
+        <span class="tech-tag">LWC</span><span class="tech-tag">Experience Builder</span><span class="tech-tag">B2B Commerce</span><span class="tech-tag">Order Mgmt</span><span class="tech-tag">Entitlement Policy</span>
+      </div>
+      <a href="https://www.shophighlinewarren.com" target="_blank" class="project-link">🔗 View Live Site</a>
+    </div>
+
+    <div class="project-card" data-tags="b2b lwc">
+      <div class="project-header">
+        <span class="project-name">Johns Manville</span>
+        <span class="project-type">LWC Migration</span>
+      </div>
+      <p class="project-desc">Upgraded legacy Aura components to Lightning Web Components (LWC) to enhance performance, scalability, and maintainability for a major B2B Commerce storefront.</p>
+      <div class="project-tech">
+        <span class="tech-tag">LWC</span><span class="tech-tag">Apex</span><span class="tech-tag">B2B Commerce</span><span class="tech-tag">Aura Migration</span>
+      </div>
+      <a href="https://www.jm.com" target="_blank" class="project-link">🔗 View Live Site</a>
+    </div>
+
+    <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-header">
+        <span class="project-name">Valmont</span>
+        <span class="project-type">Run & Operate</span>
+      </div>
+      <p class="project-desc">3-month Run and Operate project supporting backlog and overall go-live readiness for Valmont's B2B Commerce storefront. Included Google Maps integration.</p>
+      <div class="project-tech">
+        <span class="tech-tag">LWC</span><span class="tech-tag">Apex</span><span class="tech-tag">Rocket Framework</span><span class="tech-tag">Google Maps API</span><span class="tech-tag">B2B Commerce</span>
+      </div>
+      <a href="https://www.valmontstructures.com" target="_blank" class="project-link">🔗 View Live Site</a>
+    </div>
+
+    <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-header">
+        <span class="project-name">Andersen Windows</span>
+        <span class="project-type">Solo Contributor</span>
+      </div>
+      <p class="project-desc">Worked independently as Dentsu's sole contributor alongside the client team. 3-month Run and Operate project including payment integration and Google Maps for B2B Commerce.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Apex</span><span class="tech-tag">LWC</span><span class="tech-tag">Payment Integration</span><span class="tech-tag">Rocket Framework</span><span class="tech-tag">Google Maps API</span>
+      </div>
+      <a href="https://www.andersenwindows.com" target="_blank" class="project-link">🔗 View Live Site</a>
+    </div>
+
+    <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-header">
+        <span class="project-name">Hunter Douglas</span>
+        <span class="project-type">B2B Commerce</span>
+      </div>
+      <p class="project-desc">Developed a B2B Commerce website for Hunter Douglas, a leading manufacturer of automated window covering systems, with full storefront setup and payment processing.</p>
+      <div class="project-tech">
+        <span class="tech-tag">LWC</span><span class="tech-tag">Apex</span><span class="tech-tag">Payment Integration</span><span class="tech-tag">Rocket Framework</span><span class="tech-tag">B2B Commerce</span>
+      </div>
+      <a href="https://in.hunterdouglas.asia" target="_blank" class="project-link">🔗 View Live Site</a>
+    </div>
+
+    <div class="project-card" data-tags="ai lwc">
+      <div class="project-header">
+        <span class="project-name">ASPIRE POC — Dreamforce '23</span>
+        <span class="project-type">AI / Einstein GPT</span>
+      </div>
+      <p class="project-desc">Built an Einstein AI-powered POC for Asset Management Companies (AMCs), showcased at Dreamforce '23. Featured Reports & Dashboards, Flows, Triggers, and Chart.js visualizations.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Einstein GPT</span><span class="tech-tag">Chart.js</span><span class="tech-tag">LWC</span><span class="tech-tag">Apex</span><span class="tech-tag">Flows</span><span class="tech-tag">Triggers</span>
+      </div>
+      <a href="https://www.youtube.com/watch?v=IahR5vUfTbI" target="_blank" class="project-link">▶ Watch Demo</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certifications</h2>
+  <p class="section-sub">Salesforce-certified across development, AI, and commerce domains.</p>
+  <div class="certs-grid reveal">
+    <div class="cert-card">
+      <div class="cert-badge" style="background:linear-gradient(135deg,rgba(123,92,250,0.2),rgba(0,169,224,0.2)); border:2px solid rgba(123,92,250,0.4);">🏆</div>
+      <div class="cert-name">Platform Developer II</div>
+      <div class="cert-issuer">Salesforce · Advanced</div>
+      <div style="font-size:0.78rem; color:var(--text2); margin-top:0.5rem; line-height:1.5;">Advanced Apex development, SOSL/SOQL optimization, integration patterns, security.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge" style="background:linear-gradient(135deg,rgba(0,169,224,0.2),rgba(16,185,129,0.2)); border:2px solid rgba(0,169,224,0.4);">⚡</div>
+      <div class="cert-name">Platform Developer I</div>
+      <div class="cert-issuer">Salesforce · Core</div>
+      <div style="font-size:0.78rem; color:var(--text2); margin-top:0.5rem; line-height:1.5;">Core Apex, LWC, data modeling, security, deployment, testing fundamentals.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge" style="background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(239,68,68,0.2)); border:2px solid rgba(245,158,11,0.4);">🤖</div>
+      <div class="cert-name">Agentforce Specialist</div>
+      <div class="cert-issuer">Salesforce · AI</div>
+      <div style="font-size:0.78rem; color:var(--text2); margin-top:0.5rem; line-height:1.5;">AI agent building, prompt engineering, Einstein capabilities on Salesforce platform.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(0,169,224,0.2)); border:2px solid rgba(16,185,129,0.4);">🌟</div>
+      <div class="cert-name">Salesforce Associate</div>
+      <div class="cert-issuer">Salesforce · Foundation</div>
+      <div style="font-size:0.78rem; color:var(--text2); margin-top:0.5rem; line-height:1.5;">Platform fundamentals, data management, reporting, user productivity features.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge" style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.3)); border:2px solid rgba(16,185,129,0.4);">🛍</div>
+      <div class="cert-name">Shopify Development Fundamentals</div>
+      <div class="cert-issuer">Shopify · Commerce</div>
+      <div style="font-size:0.78rem; color:var(--text2); margin-top:0.5rem; line-height:1.5;">Shopify theme development, Liquid templating, commerce integrations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <p class="section-label">Technical Depth</p>
+  <h2 class="section-title">Architecture Highlights</h2>
+  <p class="section-sub">Integration and solution patterns used across projects.</p>
+  <div class="arch-grid reveal">
+    <div class="arch-card">
+      <div class="arch-title">B2B Commerce Stack</div>
+      <div class="arch-diagram">Buyer Browser
+    │
+    ▼
+Experience Cloud Site
+    │
+    ├── LWC Storefront Components
+    │       ├── Product Catalog
+    │       ├── Cart & Checkout
+    │       └── Order History
+    │
+    ├── B2B Commerce Engine
+    │       ├── Entitlement Policies
+    │       ├── Buyer Groups
+    │       └── Price Books
+    │
+    └── Apex Backend
+            ├── Order Management
+            └── Integration Layer</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">Einstein GPT POC (ASPIRE)</div>
+      <div class="arch-diagram">User (AMC Manager)
+    │
+    ▼
+LWC Dashboard
+    ├── Chart.js Visualizations
+    ├── Einstein GPT Prompts
+    └── Reports & Dashboards
+            │
+            ▼
+        Apex Controllers
+            ├── SOQL Queries
+            ├── Trigger Handlers
+            └── Flow Orchestration
+                    │
+                    ▼
+            Einstein GPT API
+            (OpenAI-backed)
+            Salesforce AI Core</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">Payment Integration Pattern</div>
+      <div class="arch-diagram">Checkout LWC
+    │
+    ▼
+Apex Controller
+    │
+    ▼
+Named Credential
+(Secure Endpoint)
+    │
+    ▼
+Payment Gateway
+    ├── Tokenization
+    ├── Auth / Capture
+    └── Refund Webhook
+            │
+            ▼
+    Platform Event
+    Order Record Update</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">CI/CD Deployment Flow</div>
+      <div class="arch-diagram">Developer (VS Code + SFDX)
+    │
+    ▼
+Feature Branch
+    │
+    ▼
+Pull Request
+(Bitbucket / GitLab)
+    │
+    ├── Apex Test Run
+    ├── PMD / Code Scan
+    └── Peer Review
+            │
+            ▼
+    Sandbox Deploy
+    (Azure DevOps Pipeline)
+            │
+            ▼
+    Production Release</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW MODE -->
+<section id="interview">
+  <p class="section-label">Interview Mode</p>
+  <h2 class="section-title">Interview Me 💬</h2>
+  <p class="section-sub">Common interview questions answered as Tushar would respond.</p>
+  <div class="interview-grid reveal">
+    <div>
+      <div class="interview-categories" id="interviewCats">
+        <button class="interview-cat-btn active" onclick="showCategory('sf', this)">☁ Salesforce Dev</button>
+        <button class="interview-cat-btn" onclick="showCategory('lwc', this)">⚡ LWC</button>
+        <button class="interview-cat-btn" onclick="showCategory('apex', this)">🔧 Apex</button>
+        <button class="interview-cat-btn" onclick="showCategory('b2b', this)">🛍 B2B Commerce</button>
+        <button class="interview-cat-btn" onclick="showCategory('behavioral', this)">🧠 Behavioral</button>
+        <button class="interview-cat-btn" onclick="showCategory('arch', this)">🏗 Architecture</button>
+      </div>
+    </div>
+    <div id="interviewQA" class="interview-qa">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Open to new opportunities. Let's connect!</p>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value"><a href="mailto:tusharfulzelesfdc@gmail.com">tusharfulzelesfdc@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-value">981-981-7261</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-value"><a href="https://linkedin.com/in/tusharfulzele" target="_blank">linkedin.com/in/tusharfulzele</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Location</div>
+          <div class="contact-item-value">India · Open to Remote</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:1.25rem;">Send a Message</h3>
+      <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Jane Smith"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="jane@company.com"/></div>
+      <div class="form-group"><label class="form-label">Subject</label><input type="text" class="form-input" placeholder="Opportunity at Acme Corp"/></div>
+      <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Hi Tushar, I'd love to discuss..."></textarea></div>
+      <button class="btn btn-primary" style="width:100%;" onclick="alert('Message form UI — connect to backend to enable sending.')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with ❤ · Tushar Fulzele © 2026 · Salesforce Developer · B2B Commerce Specialist</p>
+</footer>
+
+<script>
+const RESUME = {
+  name: "Tushar Fulzele",
+  title: "Salesforce Developer, B2B Commerce Cloud Specialist",
+  experience: "3+ years",
+  company: "Dentsu Global Services (formerly Extentia, via Merkle Inspire acquisition)",
+  role: "Associate Software Professional, Dec 2022 – Present",
+  summary: "Innovative Salesforce Developer with expertise in B2B Commerce implementations. Proven track record of implementing custom solutions across multiple enterprise projects. Featured at Dreamforce '23 with an Einstein GPT-powered POC for Asset Management Companies.",
+  clouds: ["B2B Commerce Cloud", "Experience Cloud", "Sales Cloud", "Einstein GPT", "Salesforce Order Management System"],
+  skills: {
+    dev: ["Apex", "LWC", "Aura Components", "VisualForce", "JavaScript", "SOQL", "SOSL", "Triggers", "Asynchronous Apex"],
+    commerce: ["B2B Commerce Cloud", "Storefront Setup", "Entitlement Policies", "Buyer Groups", "Price Books", "Product Categories", "Salesforce OMS"],
+    tools: ["VS Code", "Workbench", "Bitbucket", "GitLab", "JIRA", "Azure DevOps", "CI/CD", "Data Loader"],
+    other: ["Chart.js", "Reports & Dashboards", "Rocket Framework", "Google Maps Integration", "Payment Integration"]
+  },
+  certifications: ["Platform Developer 2", "Platform Developer 1", "Agentforce Specialist", "Salesforce Associate", "Shopify Development Fundamentals"],
+  projects: [
+    { name: "Highline Warren", tech: "LWC, Experience Builder, B2B Commerce, Order Management", desc: "Migrated legacy commerce stack to B2B Commerce using Experience Cloud template and Salesforce OMS.", link: "https://www.shophighlinewarren.com" },
+    { name: "Johns Manville", tech: "LWC, Apex, B2B Commerce", desc: "Upgraded legacy Aura components to LWC for better performance and maintainability.", link: "https://www.jm.com" },
+    { name: "Valmont", tech: "LWC, Apex, Rocket Framework, Google Maps, B2B Commerce", desc: "3-month Run & Operate supporting backlog and go-live readiness.", link: "https://www.valmontstructures.com" },
+    { name: "Andersen Windows", tech: "Apex, LWC, Payment Integration, Rocket Framework, Google Maps", desc: "Solo Dentsu contributor on 3-month Run & Operate project.", link: "https://www.andersenwindows.com" },
+    { name: "Hunter Douglas", tech: "LWC, Apex, Payment Integration, Rocket Framework, B2B Commerce", desc: "B2B Commerce website for a leading window covering manufacturer.", link: "https://in.hunterdouglas.asia" },
+    { name: "ASPIRE POC (Dreamforce '23)", tech: "Einstein GPT, Chart.js, LWC, Apex, Flows, Triggers", desc: "Einstein AI-powered POC for Asset Management Companies, showcased at Dreamforce '23.", link: "https://www.youtube.com/watch?v=IahR5vUfTbI" }
+  ],
+  education: "Not Available on resume",
+  contact: { email: "tusharfulzelesfdc@gmail.com", phone: "981-981-7261", linkedin: "linkedin.com/in/tusharfulzele" }
+};
+
+const AI_KNOWLEDGE = {
+  "tell me about yourself": `I'm Tushar Fulzele, a Salesforce Developer with 3+ years of experience specializing in B2B Commerce Cloud implementations. I work at Dentsu Global Services (formerly Extentia) where I've delivered enterprise-grade B2B storefronts for companies like Highline Warren, Johns Manville, Valmont, Andersen Windows, and Hunter Douglas.\n\nMy biggest highlight is building an Einstein GPT-powered POC that was showcased at Dreamforce '23 for Asset Management Companies (AMCs).\n\nI hold 5 certifications including Platform Developer II and Agentforce Specialist, and I'm skilled in Apex, LWC, Experience Builder, payment integrations, and CI/CD workflows.`,
+  "salesforce clouds": `I've worked across several Salesforce clouds:\n\n☁ B2B Commerce Cloud — My primary specialty. Implemented full storefronts including Entitlement Policies, Buyer Groups, Price Books, and Order Management.\n\n🌐 Experience Cloud — Built and customized community/portal sites using Experience Builder for all 5 commerce projects.\n\n💼 Sales Cloud — Used in the ASPIRE Einstein GPT POC for AMCs.\n\n🤖 Einstein GPT — Built a POC showcased at Dreamforce '23.\n\n📦 Salesforce OMS — Implemented Order Management for Highline Warren.`,
+  "certifications": `I hold 5 certifications:\n\n🏆 Platform Developer II — Advanced Apex, integrations, design patterns\n⚡ Platform Developer I — Core Apex, LWC, deployment\n🤖 Agentforce Specialist — Einstein AI, agent building\n🌟 Salesforce Associate — Platform fundamentals\n🛍 Shopify Development Fundamentals — Commerce & Liquid templating`,
+  "b2b commerce": `B2B Commerce is my core expertise. I've implemented 5 enterprise B2B Commerce storefronts:\n\n• Highline Warren — Full migration from legacy stack using B2B Commerce Template + OMS\n• Johns Manville — Aura to LWC migration for improved performance\n• Valmont — Run & Operate including Google Maps integration\n• Andersen Windows — Solo contributor with payment integration\n• Hunter Douglas — Full storefront for a window covering manufacturer\n\nI'm skilled in Storefront Setup, Entitlement Policies, Buyer Groups, Price Books, Product Categories, and payment gateway integrations.`,
+  "dreamforce": `One of my proudest achievements! I built the ASPIRE POC — an Einstein GPT-powered application specifically designed for Asset Management Companies (AMCs).\n\nIt was showcased at Dreamforce '23 — Salesforce's biggest annual conference attended by 40,000+ people.\n\nThe POC featured:\n• Einstein GPT for intelligent insights\n• Chart.js for rich data visualizations\n• LWC frontend components\n• Apex controllers and Triggers\n• Salesforce Flows for automation\n• Interactive Reports & Dashboards\n\n📺 Demo: https://www.youtube.com/watch?v=IahR5vUfTbI`,
+  "why hire": `Here's why I'd be a great addition to your team:\n\n✅ Proven Enterprise Experience — Delivered 5 production B2B Commerce implementations for real enterprise clients.\n\n✅ Dreamforce Recognition — My Einstein GPT POC was selected to be showcased at Dreamforce '23 — a testament to innovation.\n\n✅ Full-Stack Salesforce — Strong in Apex, LWC, Experience Cloud, integrations, CI/CD, and Flows.\n\n✅ Client-Facing Ability — Worked as solo Dentsu contributor directly with clients like Andersen Windows.\n\n✅ Certified — 5 certifications including Platform Developer II and Agentforce Specialist.\n\n✅ AI-Ready — Experience with Einstein GPT and Agentforce in real projects, not just certification study.`,
+  "apex": `My Apex expertise includes:\n\n• Custom Apex classes and trigger handlers\n• Asynchronous Apex (Batch, Queueable, Future, Scheduled)\n• SOQL and SOSL query optimization\n• Test class writing with 75%+ coverage\n• Apex integration patterns with REST/callouts\n• Sharing & security models\n• Used across all 6 projects including payment integrations and B2B Commerce customizations.`,
+  "lwc": `LWC is one of my primary development skills:\n\n• Built custom LWC components for B2B Commerce storefronts across 5 projects\n• Migrated legacy Aura components to LWC (Johns Manville project)\n• Built AI-powered dashboard LWC with Chart.js for ASPIRE POC\n• Experience with LWC lifecycle hooks, wire adapters, and event handling\n• Used in Experience Builder contexts for community sites\n• Familiar with Rocket Framework (client custom LWC framework)`
+};
+
+function getAIResponse(question) {
+  const q = question.toLowerCase();
+  if (q.includes('yourself') || q.includes('who are you') || q.includes('introduce')) return AI_KNOWLEDGE['tell me about yourself'];
+  if (q.includes('cloud') || q.includes('sales cloud') || q.includes('service') || q.includes('commerce cloud')) return AI_KNOWLEDGE['salesforce clouds'];
+  if (q.includes('certif')) return AI_KNOWLEDGE['certifications'];
+  if (q.includes('b2b') || q.includes('commerce') || q.includes('storefront')) return AI_KNOWLEDGE['b2b commerce'];
+  if (q.includes('dreamforce') || q.includes('aspire') || q.includes('einstein') || q.includes('gpt') || q.includes('amc')) return AI_KNOWLEDGE['dreamforce'];
+  if (q.includes('hire') || q.includes('why') || q.includes('fit') || q.includes('strength')) return AI_KNOWLEDGE['why hire'];
+  if (q.includes('apex') || q.includes('trigger') || q.includes('batch')) return AI_KNOWLEDGE['apex'];
+  if (q.includes('lwc') || q.includes('lightning web') || q.includes('component')) return AI_KNOWLEDGE['lwc'];
+  if (q.includes('project') || q.includes('work')) return `I've worked on 6 major projects:\n\n🏗 Highline Warren — B2B Commerce migration with OMS\n🏗 Johns Manville — Aura to LWC upgrade\n🏗 Valmont — Run & Operate with Google Maps integration\n🏗 Andersen Windows — Solo contributor, payment integration\n🏗 Hunter Douglas — B2B storefront for window covering manufacturer\n🤖 ASPIRE POC — Einstein GPT for AMCs, shown at Dreamforce '23\n\nAll projects are live! Ask me about any specific one.`;
+  if (q.includes('contact') || q.includes('email') || q.includes('reach')) return `You can reach Tushar at:\n📧 tusharfulzelesfdc@gmail.com\n📱 981-981-7261\n💼 linkedin.com/in/tusharfulzele`;
+  if (q.includes('education') || q.includes('degree') || q.includes('study')) return `Education details are not listed on the resume. However, with 3+ years of professional Salesforce development experience and 5 certifications including Platform Developer II, Tushar has demonstrated deep technical expertise through hands-on project delivery.`;
+  if (q.includes('skill') || q.includes('tech') || q.includes('language')) return `My key technical skills:\n\n💻 Languages: Apex, JavaScript, LWC, VisualForce, Aura\n☁ Salesforce: B2B Commerce, Experience Cloud, Sales Cloud, Einstein GPT, Flows, SOQL, Triggers\n🛍 Commerce: Storefront Setup, Entitlement Policies, Buyer Groups, Price Books, OMS\n🔧 Tools: VS Code, Workbench, Bitbucket, GitLab, JIRA, Azure DevOps, CI/CD\n📊 Other: Chart.js, Rocket Framework, Google Maps API, Payment Integration`;
+  return `Thanks for your question about "${question}"! Based on Tushar's resume, I can tell you he has 3+ years of Salesforce development experience at Dentsu Global Services, specializing in B2B Commerce Cloud. He's worked on 6 enterprise projects and holds 5 Salesforce certifications including Platform Developer II.\n\nTry asking me about:\n• His B2B Commerce projects\n• Certifications\n• Dreamforce '23 POC\n• LWC or Apex skills\n• Why he'd be a great hire`;
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  addMsg(msg, 'user');
+  input.value = '';
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    addMsg(getAIResponse(msg), 'ai');
+  }, 900 + Math.random() * 600);
+}
+
+function sendPrompt(text) {
+  document.getElementById('chatInput').value = text;
+  document.getElementById('chat').scrollIntoView({behavior:'smooth'});
+  setTimeout(() => sendChat(), 300);
+}
+
+function addMsg(text, type) {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `msg ${type}`;
+  div.innerHTML = `<div class="msg-avatar ${type}">${type==='ai'?'AI':'You'}</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ai'; div.id = 'typing';
+  div.innerHTML = '<div class="msg-avatar ai">AI</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+// Project filter
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.dataset.hidden = (tag !== 'all' && !tags.includes(tag)) ? 'true' : 'false';
+    card.style.display = (tag !== 'all' && !tags.includes(tag)) ? 'none' : 'flex';
+  });
+}
+
+// Interview QA data
+const INTERVIEW = {
+  sf: [
+    { q: "How long have you been working with Salesforce?", a: "I've been working with Salesforce professionally for 3+ years since December 2022 at Dentsu Global Services. I've been focused on B2B Commerce Cloud and Experience Cloud implementations, delivering 5 enterprise storefronts and the ASPIRE Einstein GPT POC showcased at Dreamforce '23." },
+    { q: "What's your Salesforce certification journey?", a: "I hold 5 certifications: Platform Developer I and II (my core dev certs), Agentforce Specialist (for AI/Einstein work), Salesforce Associate, and Shopify Development Fundamentals. The PD2 required deep understanding of advanced Apex patterns and design principles." },
+    { q: "Describe your most impactful Salesforce project.", a: "The ASPIRE POC at Dreamforce '23 was my most impactful — getting an Einstein GPT solution selected for Dreamforce is a rare honor. But for business impact, the Highline Warren B2B Commerce migration was significant as it moved a major distributor from a legacy platform to Salesforce's modern B2B Commerce stack with Order Management." }
+  ],
+  lwc: [
+    { q: "What's your experience with LWC?", a: "LWC is one of my strongest skills. I've built custom LWC components across 5 B2B Commerce storefronts, migrated legacy Aura components to LWC for Johns Manville, and built AI-powered dashboard components for the ASPIRE POC using Chart.js. I'm experienced with lifecycle hooks, wire adapters, component communication, and working within the Rocket Framework." },
+    { q: "How do you handle LWC component communication?", a: "I use several patterns: @wire for reactive data, custom events with bubbling for parent-child communication, LMS (Lightning Message Service) for cross-tree communication, and publish-subscribe patterns. In B2B Commerce storefronts, I've worked with the Commerce SDK wiring to fetch product and cart data reactively." },
+    { q: "Have you migrated from Aura to LWC?", a: "Yes — at Johns Manville I was specifically brought in to upgrade legacy Aura components to LWC. This involved mapping Aura concepts to LWC equivalents: @AuraHandledEvent to custom events, component.get/set to @api properties, and attribute bindings to @track/@api decorators." }
+  ],
+  apex: [
+    { q: "What's your Apex experience?", a: "I have deep Apex experience including trigger handlers, Apex classes, asynchronous processing (Batch, Queueable, Future, Scheduled), SOQL/SOSL optimization, REST callout integrations, and test class writing. I've written Apex for payment integrations, B2B Commerce customizations, and the Einstein GPT ASPIRE POC." },
+    { q: "How do you approach bulkification in Apex?", a: "Always design triggers and classes to handle bulk operations. I use collections (Maps, Sets, Lists) to avoid SOQL inside loops, process records in bulk using trigger.new with Maps, and leverage @future or Queueable for async processing when needed. Governor limits are always top of mind." },
+    { q: "How do you write test classes?", a: "I aim for meaningful test coverage beyond just the 75% minimum. I create test data factories, use @testSetup for shared data, test both positive and negative/exception scenarios, use System.assert statements to verify logic, and mock callouts using HttpCalloutMock for integration tests." }
+  ],
+  b2b: [
+    { q: "Walk me through setting up a B2B Commerce storefront.", a: "B2B Commerce setup involves: 1) Enabling B2B Commerce and setting up the Store in Setup, 2) Configuring Buyer Groups and Entitlement Policies, 3) Setting up Price Books and Product Catalogs, 4) Customizing the storefront using Experience Builder with LWC components, 5) Configuring the Checkout Flow, 6) Setting up Order Management for fulfillment. I've done this full setup for Highline Warren." },
+    { q: "What's the Rocket Framework?", a: "Rocket is a custom-developed internal framework used by some of our clients (Valmont, Andersen Windows, Hunter Douglas). It's a B2B Commerce extension framework that provides pre-built LWC components and patterns on top of standard B2B Commerce. Working with it required understanding both Salesforce standards and the framework's conventions." },
+    { q: "How do you handle payment integration in B2B Commerce?", a: "Payment integration typically uses Named Credentials for secure endpoint configuration, an Apex service class for callouts to the payment gateway (tokenization, auth/capture), and platform events or callbacks for webhook handling. For Andersen Windows and Hunter Douglas, I implemented this pattern while ensuring PCI-compliant data handling." }
+  ],
+  behavioral: [
+    { q: "Tell me about working as a solo contributor.", a: "At Andersen Windows, I was Dentsu's sole contributor working directly alongside the client's internal team. This required strong communication, the ability to understand requirements independently, and confidence in making technical decisions. I delivered the 3-month Run & Operate engagement successfully, which speaks to both my technical and collaborative skills." },
+    { q: "How do you handle production issues?", a: "My resume specifically highlights my 'proven ability to troubleshoot and resolve critical production issues ensuring business continuity' — something I'm proud of. My approach: first contain the issue (deploy a fix or rollback), then investigate root cause using debug logs, Workbench, and Salesforce monitoring. I document findings to prevent recurrence." },
+    { q: "Describe your experience with client communication.", a: "I have direct client experience from multiple projects. I gather requirements, translate business needs into Salesforce solutions, and present technical decisions clearly to non-technical stakeholders. At Andersen Windows, working solo with the client meant I was the primary technical point of contact — a responsibility I handled independently." }
+  ],
+  arch: [
+    { q: "How do you approach B2B Commerce architecture?", a: "I separate concerns into layers: Experience Cloud (UI/LWC), Commerce engine (Entitlements, Pricing), Apex service layer (business logic), and integration layer (payment, ERP). I use Named Credentials for external systems, Platform Events for async updates, and keep the storefront LWC components loosely coupled using wire adapters." },
+    { q: "What's your experience with CI/CD on Salesforce?", a: "I use Salesforce DX with VS Code, push to Bitbucket/GitLab feature branches, run Apex tests via pipelines, and deploy through Azure DevOps pipelines. I've gone through full release cycles and understand the importance of version control, scratch orgs for development, and sandbox progression before production." },
+    { q: "How did you architect the ASPIRE Einstein GPT POC?", a: "The ASPIRE architecture had: LWC dashboard components using Chart.js for visualization → Apex controllers handling SOQL queries and business logic → Einstein GPT API integration for AI-powered insights → Flows for automation → Triggers for real-time data processing. It was designed to be demonstrable at Dreamforce, so I focused on clean UX and impressive AI capabilities." }
+  ]
+};
+
+function showCategory(cat, btn) {
+  document.querySelectorAll('.interview-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const qa = document.getElementById('interviewQA');
+  qa.innerHTML = '';
+  (INTERVIEW[cat] || []).forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'qa-item';
+    div.innerHTML = `<div class="qa-q" onclick="toggleQA(this)"><span>${item.q}</span><span class="chevron">▼</span></div><div class="qa-a">${item.a.replace(/\n/g,'<br>')}</div>`;
+    qa.appendChild(div);
+  });
+}
+
+function toggleQA(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+// Skill bar animation
+function animateSkillBars() {
+  document.querySelectorAll('.skill-fill').forEach(bar => {
+    bar.style.width = (bar.dataset.width || 0) + '%';
+  });
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Skill bar observer
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) animateSkillBars(); });
+}, { threshold: 0.2 });
+const skillSection = document.getElementById('skills');
+if (skillSection) skillObserver.observe(skillSection);
+
+// Theme toggle
+document.getElementById('themeToggle').addEventListener('click', function() {
+  const isLight = document.body.dataset.theme === 'light';
+  document.body.dataset.theme = isLight ? '' : 'light';
+  this.textContent = isLight ? '☀ Light' : '🌙 Dark';
+});
+
+// Init interview
+showCategory('sf', document.querySelector('.interview-cat-btn'));
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tushar Fulzele | Salesforce Developer Portfolio</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2233;
+    --surface: #1e2a3a;
+    --surface2: #243040;
+    --border: rgba(99,179,237,0.15);
+    --border2: rgba(99,179,237,0.3);
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --accent: #00a9e0;
+    --accent2: #0070d2;
+    --accent3: #7b5cfa;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --grad: linear-gradient(135deg, #00a9e0, #7b5cfa);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  [data-theme="light"] {
+    --bg: #f0f4f8;
+    --bg2: #ffffff;
+    --bg3: #e8edf5;
+    --surface: #ffffff;
+    --surface2: #f1f5f9;
+    --border: rgba(0,112,210,0.15);
+    --border2: rgba(0,112,210,0.3);
+    --text: #1e293b;
+    --text2: #475569;
+    --text3: #94a3b8;
+    --accent: #0070d2;
+    --accent2: #005fb2;
+    --accent3: #6d48e5;
+    --green: #059669;
+    --amber: #d97706;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,14,26,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  [data-theme="light"] nav { background: rgba(240,244,248,0.9); }
+  .nav-brand { font-weight: 700; font-size: 1.1rem; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { color: var(--text2); font-size: 0.875rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .theme-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text2); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+  .section-sub { color: var(--text2); margin-bottom: 2.5rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 80px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   .avatar-ring {
     width: 160px; height: 160px;
     border-radius: 50%;
